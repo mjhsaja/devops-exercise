@@ -44,6 +44,10 @@ pkgs.mkShell {
     pkgs.go
     python310
     python310Packages.pip
+    php83
+    php83Packages.composer
+    mysql80
+    redis
   ];
 
   shellHook = ''
