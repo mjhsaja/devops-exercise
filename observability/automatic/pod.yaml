@@ -1,0 +1,25 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: onxp
+  labels:
+    owner: paige
+spec:
+  containers:
+  - name: onxp
+    image: localhost/onxpnet-observability
+    ports:
+    - containerPort: 3001
+      hostPort: 3001
+  - name: jaeger-all-in-one
+    image: jaegertracing/all-in-one:1.42
+    ports:
+    - containerPort: 16686
+      hostPort: 16686
+    - containerPort: 4318
+    env:
+    - name: COLLECTOR_OTLP_ENABLED
+      value: "true"
+    - name: OTEL_TRACES_EXPORTER
+      value: "otlp"
