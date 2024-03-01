@@ -1,6 +1,5 @@
 # Init command
-# gcloud config set project pmrms-362603
-# gcloud container clusters get-credentials primary --region=asia-southeast2-a
+# gcloud config set project mashanz-software-engineering
 
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs
 provider "google" {
@@ -11,7 +10,7 @@ provider "google" {
 # https://terraform.io/language/settings/backends/gcs
 terraform {
   backend "gcs" {
-    bucket = "#"
+    bucket = "onxp-terraform"
     prefix = "terraform/state"
   }
 
