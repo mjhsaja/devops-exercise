@@ -9,8 +9,8 @@ resource "google_project_service" "container" {
 }
 
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_network
-resource "google_compute_network" "main" {
-  name = "main"
+resource "google_compute_network" "onxpnet" {
+  name = "onxpnet"
   routing_mode = "REGIONAL"
   auto_create_subnetworks = false
   mtu = 1460
