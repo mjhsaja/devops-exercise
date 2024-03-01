@@ -48,6 +48,7 @@ pkgs.mkShell {
     php83Packages.composer
     mysql80
     redis
+    kubernetes-helm
   ];
 
   shellHook = ''
