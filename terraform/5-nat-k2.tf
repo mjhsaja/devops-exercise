@@ -1,7 +1,7 @@
 # NAT
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_router_nat
 resource "google_compute_router_nat" "natgw_k2_devops" {
-  name                               = "natgw_k2_devops"
+  name                               = "natgw-k2-devops"
   router                             = google_compute_router.router_k2_devops.name
   region                             = google_compute_router.router_k2_devops.region
   nat_ip_allocate_option             = "MANUAL_ONLY"
