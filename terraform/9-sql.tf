@@ -3,7 +3,7 @@
 resource "google_sql_database_instance" "onxp-sql" {
   name             = "onxp-sql"
   region           = var.region
-  database_version = "POSTGRES_15_6"
+  database_version = "MYSQL_8_0"
 
   depends_on = [google_service_networking_connection.private_vpc_connection_support]
 
