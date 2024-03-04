@@ -25,5 +25,5 @@ resource "google_compute_address" "addr_nat_k2_devops" {
   network_tier = "STANDARD"
   region = var.region_k2
 
-  depends_on = [ google.google_project_service.compute ]
+  depends_on = [ google_project_service.compute ]
 }
