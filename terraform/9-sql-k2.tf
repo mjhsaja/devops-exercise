@@ -12,11 +12,26 @@ resource "google_sql_database_instance" "db_instance_k2_devops" {
         tier = "db-g1-small"
         edition = "ENTERPRISE"
         disk_size = 10
-        disk_type = "PD_HDD"
+        disk_type = "PD_SSD"
+        disk_autoresize = true
+        availability_type = "ZONAL"
         ip_configuration {
-            ipv4_enabled = false
-            private_network = google_compute_network.vpc_k2_devops
+            ipv4_enabled = true
+            private_network = google_compute_network.vpc_k2_devops.id
             enable_private_path_for_google_cloud_services = true
+        }
+        backup_configuration {
+          enabled = true
+          location = var.region_k2
+          transaction_log_retention_days = 7
+
+          backup_retention_settings {
+            retained_backups = 7
+          }
+        }
+        deletion_protection_enabled = true
+        insights_config {
+          query_insights_enabled = true
         }
     }
 
@@ -34,7 +49,7 @@ resource "google_sql_database" "db_k2_devops" {
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_user
 
 resource "google_sql_user" "db_user_k2_devops" {
-  name     = "me"
+  name     = "postgres"
   instance = google_sql_database_instance.db_instance_k2_devops.name
   password = "PassUserDbK2"
 }
