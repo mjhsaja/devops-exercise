@@ -1,3 +1,4 @@
 dump.rdb
 nohup.out
 .terraform
+.terraform.lock.hcl
