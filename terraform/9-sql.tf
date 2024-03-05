@@ -3,7 +3,7 @@
 resource "google_sql_database_instance" "onxp-sql" {
   name             = "onxp-sql"
   region           = var.region
-  database_version = "MYSQL_8_0"
+  database_version = "POSTGRES_15"
 
   depends_on = [google_service_networking_connection.private_vpc_connection_support]
 
@@ -34,12 +34,16 @@ resource "google_sql_database_instance" "onxp-sql" {
       }
     }
 
-    deletion_protection_enabled = true
-
+    # bug?
+    deletion_protection_enabled = false
+    
     insights_config {
       query_insights_enabled = true
     }
   }
+
+  # bug?
+  deletion_protection = false
 }
 
 # Database
