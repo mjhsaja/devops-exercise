@@ -22,10 +22,13 @@ resource "google_storage_bucket_object" "uploads_k2" {
     name = "uploads/"
     bucket = "gcs-k2-devops"
     content = " "
+    depends_on = [ google_storage_bucket.gcs_k2_devops ]
 }
 
 resource "google_storage_bucket_object" "archives_k2" {
   name = "archive/"
   bucket = "gcs-k2-devops"
   content = " "
+  depends_on = [ google_storage_bucket.gcs_k2_devops ]
+
 }

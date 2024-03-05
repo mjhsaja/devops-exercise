@@ -2,7 +2,7 @@
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_database_instance
 
 resource "google_sql_database_instance" "db_instance_k2_devops" {
-    name = "db_instance_k2_devops"
+    name = "db-instance-k2-devops"
     database_version = "POSTGRES_15"
     region = var.region_k2
 
