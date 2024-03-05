@@ -7,7 +7,7 @@ resource "google_compute_router_nat" "natgw_k2_devops" {
   nat_ip_allocate_option             = "MANUAL_ONLY"
   source_subnetwork_ip_ranges_to_nat = "ALL_SUBNETWORKS_ALL_IP_RANGES"
 
-  nat_ips = [ google_compute_address.addr_nat_k2_devops.*.self_link ]
+  nat_ips = [ google_compute_address.addr_nat_k2_devops.self_link ]
 
   subnetwork {
     name                    = google_compute_subnetwork.subnet_vpc_k2_devops.id
