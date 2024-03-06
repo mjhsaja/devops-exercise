@@ -21,7 +21,7 @@ resource "google_compute_router_nat" "natgw_k2_devops" {
 
 resource "google_compute_address" "addr_nat_k2_devops" {
   name = "addr-nat-k2-devops"
-  address = "EXTERNAL"
+  address_type = "EXTERNAL"
   network_tier = "STANDARD"
   region = var.region_k2
 
