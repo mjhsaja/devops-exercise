@@ -42,7 +42,6 @@ resource "google_sql_database_instance" "onxp-sql" {
     }
   }
 
-  # bug?
   deletion_protection = false
 }
 
