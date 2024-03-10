@@ -50,7 +50,7 @@ resource "google_sql_database_instance" "kel1-sql" {
 
 resource "google_sql_database" "kel1-production" {
     name = "kel1-production"
-    instance = google_sql_database_instance.kel1-sql
+    instance = google_sql_database_instance.kel1-sql.name
 }
 
 

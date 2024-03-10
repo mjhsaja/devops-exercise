@@ -8,7 +8,7 @@ resource "google_service_account" "kubernetes-kel1-sa" {
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_node_pool
 resource "google_container_node_pool" "kel1-node-pool" {
     name = "kel1-node-pool"
-    cluster = google_container_cluster.kel1-kubernetes
+    cluster = google_container_cluster.kel1-kubernetes.id
     node_count = 1
 
     autoscaling {
@@ -30,7 +30,7 @@ resource "google_container_node_pool" "kel1-node-pool" {
       disk_size_gb = 80
       disk_type = "pd-balanced"
 
-      service_account = google_service_account.kubernetes-kel1-sa
+      service_account = google_service_account.kubernetes-kel1-sa.email
       oauth_scopes = [
         "https://www.googleapis.com/auth/cloud-platform"
       ]
