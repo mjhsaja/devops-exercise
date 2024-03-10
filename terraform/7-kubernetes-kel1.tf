@@ -9,7 +9,7 @@ resource "google_container_cluster" "kel1-kubernetes" {
     subnetwork = google_compute_subnetwork.subnet_vpc_kel1.self_link
     logging_service = "none"
     monitoring_service = "none"
-    networking_mode = "VPN_NATIVE"
+    networking_mode = "VPC_NATIVE"
 
     addons_config {
       horizontal_pod_autoscaling {
@@ -22,7 +22,7 @@ resource "google_container_cluster" "kel1-kubernetes" {
     }
 
     release_channel {
-      channel = "REGULER"
+      channel = "REGULAR"
     }
 
     ip_allocation_policy {
