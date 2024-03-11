@@ -13,7 +13,7 @@ resource "google_container_node_pool" "kel1-node-pool" {
 
     autoscaling {
       min_node_count = 1
-      max_node_count = 10
+      max_node_count = 1
       location_policy = "BALANCED"
     }
 
