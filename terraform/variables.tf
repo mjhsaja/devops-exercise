@@ -9,3 +9,9 @@ variable "region" {
   type = string
   default = "us-central1"
 }
+
+variable "zone" {
+  description = "Zone of project"
+  type = string
+  default = "us-central1-a"
+}

@@ -2,7 +2,7 @@
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster
 resource "google_container_cluster" "onxp-kubernetes" {
   name               = "onxp-kubernetes"
-  location           = "${var.region}-a"
+  location           = "${var.zone}"
   initial_node_count = 1
   remove_default_node_pool = true
   network = google_compute_network.main.self_link
