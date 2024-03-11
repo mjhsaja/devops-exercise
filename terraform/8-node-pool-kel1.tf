@@ -22,8 +22,6 @@ resource "google_container_node_pool" "kel1-node-pool" {
       auto_upgrade = true
     }
 
-    node_locations = ["us-central1-a"]
-
     node_config {
       preemptible = true
       machine_type = "e2.micro"

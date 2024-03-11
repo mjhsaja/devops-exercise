@@ -13,7 +13,7 @@ resource "google_container_node_pool" "onxp-node-pool" {
 
   autoscaling {
     min_node_count = 1
-    max_node_count = 10
+    max_node_count = 1
     location_policy = "BALANCED"
   }
 
@@ -22,12 +22,10 @@ resource "google_container_node_pool" "onxp-node-pool" {
     auto_upgrade = true
   }
 
-  node_locations = [ "us-central1-a" ]
-
   node_config {
     preemptible  = true
     machine_type = "e2-micro"
-    disk_size_gb = 80
+    disk_size_gb = 20
     disk_type = "pd-balanced"
 
     service_account = google_service_account.kubernetes-onxp-sa.email
