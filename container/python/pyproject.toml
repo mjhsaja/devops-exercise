@@ -4,7 +4,6 @@ version = "0.1.0"
 description = "Django template project."
 authors = ["IMP Studio"]
 license = "MIT"
-readme = "README.md"
 packages = [{ include = "app" }]
 
 [tool.poetry.dependencies]
