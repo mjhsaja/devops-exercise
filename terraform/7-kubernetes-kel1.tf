@@ -2,7 +2,7 @@
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster
 resource "google_container_cluster" "kel1-kubernetes" {
     name = "kel1-kubernetes"
-    location = "${var.region}"
+    location = "${var.zone}"
     initial_node_count = 1
     remove_default_node_pool = true
     network = google_compute_network.vpc-kel1.self_link
