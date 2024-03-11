@@ -9,6 +9,7 @@ resource "google_service_account" "kubernetes-kel1-sa" {
 resource "google_container_node_pool" "kel1-node-pool" {
     name = "kel1-node-pool"
     cluster = google_container_cluster.kel1-kubernetes.id
+    location = "${var.region}-a"
     node_count = 1
 
     autoscaling {

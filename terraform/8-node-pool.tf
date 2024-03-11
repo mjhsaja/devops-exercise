@@ -9,6 +9,7 @@ resource "google_service_account" "kubernetes-onxp-sa" {
 resource "google_container_node_pool" "onxp-node-pool" {
   name       = "onxp-node-pool"
   cluster    = google_container_cluster.onxp-kubernetes.id
+  location = "${var.region}-a"
   node_count = 1
 
   autoscaling {
