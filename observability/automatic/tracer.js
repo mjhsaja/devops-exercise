@@ -18,7 +18,7 @@ const {
 
 
 const exporter = new OTLPTraceExporter({
-    url: "http://localhost:4318/v1/traces"
+    url: "http://ot-collector.ops.onxp.net/v1/traces"
 });
 
 const provider = new BasicTracerProvider({
