@@ -1,9 +1,67 @@
 Vagrant.configure("2") do |config|
-  config.vm.box = "centos/8"
+  config.vm.box = "debian/bookworm64"
   config.vm.network "private_network", type: "dhcp"
   
   config.vm.provider "virtualbox" do |vb|
     vb.memory = "1024"
     vb.cpus = 2
   end
+
+  config.vm.provision "shell", inline: <<-SHELL
+    sudo apt update -y
+
+    # install terraform
+    curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+    sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+
+    # install google cloud sdk
+    echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+    curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
+
+    # install helm
+    curl https://baltocdn.com/helm/signing.asc | sudo apt-key add -
+    sudo apt install apt-transport-https --yes
+    echo "deb https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
+
+    # install Node.js
+    curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+
+    # install php
+    # install PHP 8
+    echo "deb https://packages.sury.org/php/ $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/php.list
+    wget -qO - https://packages.sury.org/php/apt.gpg | sudo apt-key add -
+
+    # install docker
+    sudo apt install -y git curl wget \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
+
+    curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+    echo \
+      "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian \
+      $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+    sudo apt update -y
+    sudo apt install -y \
+    google-cloud-sdk \
+    terraform \
+    helm \
+    docker-ce docker-ce-cli containerd.io docker-compose \
+    nodejs \
+    redis-server \
+    default-mysql-server \
+    postgresql \
+    python3 python3-pip \
+    php8.1 php8.1-cli php8.1-common
+
+
+    # install kubectl
+    curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+    chmod +x kubectl
+    sudo mv kubectl /usr/local/bin/kubectl
+
+  SHELL
 end
