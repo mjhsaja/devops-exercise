@@ -44,3 +44,4 @@ CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 # using gar
 # export GAR_SA_KEY=$(cat gar-sa-key.json | base64)
 # echo $GAR_SA_KEY | base64 -d | docker login -u _json_key --password-stdin https://us-central1-docker.pkg.dev
+# cat gar-sa-key.json | docker login -u _json_key --password-stdin https://us-central1-docker.pkg.dev
