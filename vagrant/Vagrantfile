@@ -9,6 +9,13 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision "shell", inline: <<-SHELL
     sudo apt update -y
+    sudo apt install -y git curl wget \
+      apt-transport-https \
+      ca-certificates \
+      curl \
+      gnupg \
+      lsb-release \
+      software-properties-common
 
     # install terraform
     curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
@@ -32,13 +39,6 @@ Vagrant.configure("2") do |config|
     wget -qO - https://packages.sury.org/php/apt.gpg | sudo apt-key add -
 
     # install docker
-    sudo apt install -y git curl wget \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    gnupg \
-    lsb-release
-
     curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
     echo \
       "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian \

@@ -11,6 +11,6 @@ RUN go get
 
 RUN go build -o ./bin/app ./main.go
 
-EXPOSE 8090
+EXPOSE 8080
 
 ENTRYPOINT [ "/app/bin/app" ]
