@@ -8,3 +8,6 @@ node_modules/
 .ruff_cache/
 .git/
 dist/
+
+Dockerfile 
+gar-sa-key.json
